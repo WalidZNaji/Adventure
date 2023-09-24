@@ -9,7 +9,7 @@ public class Adventure {
         Room room2 = new Room("Room 2", "Small room filled with trash");
         Room room3 = new Room("Room 3", "Forrest room filled with green trees");
         Room room4 = new Room("Room 4", "Big white room with a single chair in the middle");
-        Room room5 = new Room("Room 5", "The room is filling up with water FAST. Look for a way out.");
+        Room room5 = new Room("Room 5", "Treassure room! THE ROOM IS FILLING UP WITH WATER FAST! Look for a way out.");
         Room room6 = new Room("Room 6", "Slaughter room with bags hanging from the ceiling ");
         Room room7 = new Room("Room 7", "Playroom filled with colours and childrens toys");
         Room room8 = new Room("Room 8", "Disco room with different coloured tiles and a huge discoball");
