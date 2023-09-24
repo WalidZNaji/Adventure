@@ -13,7 +13,7 @@ public class Adventure {
         Room room6 = new Room("Room 6", "Slaughter room with bags hanging from the ceiling ");
         Room room7 = new Room("Room 7", "Playroom filled with colours and childrens toys");
         Room room8 = new Room("Room 8", "Disco room with different coloured tiles and a huge discoball");
-        Room room9 = new Room("Room 9", "Sleeper room, 10 beds, 10 people sleeping");
+        Room room9 = new Room("Room 9", "Sleeper room, 9 beds, 9 people sleeping");
 
         room1.setGoEast(room2);
         room2.setGoWest(room1);
@@ -63,7 +63,7 @@ public class Adventure {
         if (nextRoom != null) {
             currentRoom = nextRoom;
         } else {
-            System.out.print("You can't go that way. Try again: ");
+            System.out.print("You can't go that way. Try again. ");
         }
     }
 

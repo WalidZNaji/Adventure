@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 public class Main {
+    private static Adventure adventure;
     public static void main(String[] args) {
 
-        Adventure adventure = new Adventure();
+        adventure = new Adventure();
         Scanner scan = new Scanner(System.in);
 
         printStartMessage();
@@ -20,20 +21,25 @@ public class Main {
                 case "go north":
                 case "go n":
                     adventure.move("north");
+                    printRoomInfo();
                     break;
                 case "go south":
                 case "go s":
                     adventure.move("south");
+                    printRoomInfo();
                     break;
                 case "go east":
                 case "go e":
                     adventure.move("east");
+                    printRoomInfo();
                     break;
                 case "go west":
                 case "go w":
                     adventure.move("west");
+                    printRoomInfo();
                     break;
                 case "look":
+                    printDescription();
                     break;
                 case "help":
                     printHelp();
@@ -54,12 +60,12 @@ public class Main {
                 "All the rooms are different. Have a look around.\n" +
                 "See if you can find room 5.. \n");
 
-        System.out.println("You are able to move around my typing \"go north/south/east/west\" or \"go n/s/e/w\"\n" +
+        System.out.println("You are able to move around by typing \"go north/south/east/west\" or \"go n/s/e/w\"\n" +
                 "If you need anything type \"help\"\n");
-    } // TODO static?
+    }
 
-    public static void printRoomInfo() {
-        Adventure adventure = new Adventure();
+    public static void  printRoomInfo() {
+       
         System.out.println("Currently you're in " + adventure.getCurrentRoom() );
         System.out.println(adventure.getCurrentRoom().getDescription());
 
@@ -76,6 +82,10 @@ public class Main {
             System.out.println("help - Show this help message.");
             System.out.println("exit - Quit the game.");
         }
+
+    public static void printDescription() {
+        System.out.println(adventure.getCurrentRoom().getDescription());
+    }
 
 
 }
