@@ -24,36 +24,28 @@ public class Ui {
             input = scan.nextLine();
 
             switch (input) {
-                case "go north":
-                case "go n":
+                case "go north", "go n" -> {
                     adventure.move("north");
                     printRoomInfo();
-                    break;
-                case "go south":
-                case "go s":
+                }
+                case "go south", "go s" -> {
                     adventure.move("south");
                     printRoomInfo();
-                    break;
-                case "go east":
-                case "go e":
+                }
+                case "go east", "go e" -> {
                     adventure.move("east");
                     printRoomInfo();
-                    break;
-                case "go west":
-                case "go w":
+                }
+                case "go west", "go w" -> {
                     adventure.move("west");
                     printRoomInfo();
-                    break;
-                case "look":
-                    printDescription();
-                    break;
-                case "help":
-                    printHelp();
-                    break;
-                case "exit":
+                }
+                case "look" -> printDescription();
+                case "help" -> printHelp();
+                case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
                     input = "exit";
-                    break;
+                }
             }
         }
 
@@ -84,7 +76,7 @@ public class Ui {
         System.out.println("go east/ go e - Move to the room to the east.");
         System.out.println("go south/ go s - Move to the room to the south.");
         System.out.println("go west/ go w - Move to the room to the west.");
-        System.out.println("\"look\" - Show description of current room.");
+        System.out.println("look - Show description of current room.");
         System.out.println("help - Show this help message.");
         System.out.println("exit - Quit the game.");
     }

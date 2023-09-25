@@ -44,21 +44,13 @@ public class Adventure {
 
     public void move(String direction) {
 
-        Room nextRoom = null;
-        switch (direction) {
-            case "north":
-                nextRoom = currentRoom.getGoNorth();
-                break;
-            case "east":
-                nextRoom = currentRoom.getGoEast();
-                break;
-            case "south":
-                nextRoom = currentRoom.getGoSouth();
-                break;
-            case "west":
-                nextRoom = currentRoom.getGoWest();
-                break;
-        }
+        Room nextRoom = switch (direction) {
+            case "north" -> currentRoom.getGoNorth();
+            case "east" -> currentRoom.getGoEast();
+            case "south" -> currentRoom.getGoSouth();
+            case "west" -> currentRoom.getGoWest();
+            default -> null;
+        };
 
         if (nextRoom != null) {
             currentRoom = nextRoom;
