@@ -3,15 +3,15 @@ import java.util.Scanner;
 public class Ui {
 
     private static Adventure adventure;
-    private final Scanner scan;
+    private Scanner scan;
 
-    public Ui() {
-        scan = new Scanner(System.in);
-        adventure = new Adventure();
-
+    public Ui(Adventure adventure) {
+        this.adventure = adventure;
     }
 
     public void startProgram() {
+
+        scan = new Scanner(System.in);
 
         printStartMessage();
 
