@@ -72,4 +72,20 @@ public class Room {
     public String toString() {
         return name;
     }
+
+    // methods for items
+
+    public ArrayList<Item> getItemList() {
+        return itemList;
+    }
+
+    public void addItem(Item item) {
+        itemList.add(item);
+    }
+
+    public void removeItem(Item item) {
+        itemList.remove(item);
+    }
+
+
 }

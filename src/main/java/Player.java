@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+
 public class Player {
 
     private Room currentRoom;
+
+    private ArrayList<Item> inventory = new ArrayList<>();
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -25,6 +29,27 @@ public class Player {
         } else {
             System.out.print("You can't go that way. Try again. ");
         }
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void takeItem(Item item) {
+        inventory.add(item);
+    }
+
+    public void dropItem(Item item) {
+        inventory.remove(item);
+    }
+
+    public Item findItem(String itemName) {
+        for (Item item : inventory) {
+            if (item.getItemName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 
 }

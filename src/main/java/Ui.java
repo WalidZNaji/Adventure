@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -15,11 +16,11 @@ public class Ui {
 
         printStartMessage();
 
-        String input = "";
-
         printRoomInfo();
 
-        while (!input.equalsIgnoreCase("exit")) {
+        String input;
+
+        while (true) {
 
             input = scan.nextLine();
 
@@ -42,9 +43,15 @@ public class Ui {
                 }
                 case "look" -> printDescription();
                 case "help" -> printHelp();
+                case "take" -> {
+                    String itemName = input;
+                    takeItem(itemName);
+
+                }
+                case "inventory", "inv" -> showInventory();
                 case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
-                    input = "exit";
+                    return;
                 }
             }
         }
@@ -67,7 +74,16 @@ public class Ui {
         System.out.println("Currently you're in " + adventure.getCurrentRoom() );
         System.out.println(adventure.getCurrentRoom().getDescription());
 
-        System.out.print("\nWhich direction would you like to go: ");
+        ArrayList<Item> itemsInRoom = adventure.getCurrentRoom().getItemList();
+
+        if (itemsInRoom != null && !itemsInRoom.isEmpty()){
+            System.out.println("Items in this room: ");
+            for (Item item : itemsInRoom) {
+                System.out.println(item.getItemName() + " " + item.getItemDescription());
+            }
+        }
+
+        System.out.print("\nWhat would you like to do: ");
     }
 
     public static void printHelp() {
@@ -78,11 +94,58 @@ public class Ui {
         System.out.println("go west/ go w - Move to the room to the west.");
         System.out.println("look - Show description of current room.");
         System.out.println("help - Show this help message.");
+        System.out.println("inventory - Show your inventory.");
+        System.out.println("\"take\" followed by name of item - Pick up item ");
+        System.out.println("\"drop\" followed by name of item - drop item ");
         System.out.println("exit - Quit the game.");
     }
 
     public static void printDescription() {
         System.out.println(adventure.getCurrentRoom().getDescription());
     }
+
+    public void takeItem(String itemName) {
+        Player player = adventure.getPlayer();
+        Room currentRoom = adventure.getCurrentRoom();
+        Item item = player.findItem(itemName);
+
+        if (item != null) {
+            currentRoom.removeItem(item);
+            player.takeItem(item);
+            System.out.println("You have picked up the " + item.getItemName() + ".");
+        } else {
+            System.out.println("There is nothing like " + itemName + " to pick up around here.");
+        }
+    }
+
+    public void dropItem(String itemName) {
+        Player player = adventure.getPlayer();
+        Room currentRoom = adventure.getCurrentRoom();
+        Item item = player.findItem(itemName);
+
+        if (item != null) {
+            player.dropItem(item);
+            currentRoom.addItem(item);
+            System.out.println("You have dropped " + item.getItemName());
+        } else System.out.println("There is nothing like " + itemName + " in your inventory");
+    }
+    public void showInventory() {
+        Player player = adventure.getPlayer();
+        ArrayList<Item> inventory = player.getInventory();
+
+        if (inventory.isEmpty()) {
+            System.out.println("Your inventory is empty.");
+        } else
+            System.out.println("Inventory: ");
+        for (Item item : inventory) {
+            System.out.println(item.getItemName() + " " + item.getItemDescription());
+        }
+
+
+
+    }
+
+
+
 
 }

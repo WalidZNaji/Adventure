@@ -16,4 +16,9 @@ public class Adventure {
     public void move(String direction) {
         player.move(direction);
     }
+
+    public Player getPlayer() {
+        return player;
+    }
+
 }
