@@ -86,7 +86,7 @@ public class Ui {
         if (itemsInRoom != null && !itemsInRoom.isEmpty()){
             System.out.println("Items in this room: ");
             for (Item item : itemsInRoom) {
-                System.out.println(item.getItemName() + " " + item.getItemDescription());
+                System.out.println(item.getItemName() + ", " + item.getItemDescription());
             }
         }
 
@@ -117,7 +117,8 @@ public class Ui {
         if (itemsInRoom != null && !itemsInRoom.isEmpty()) {
             System.out.println("Items in this room: ");
             for (Item item : itemsInRoom) {
-                System.out.println(item.getItemName() + " " + item.getItemDescription());
+                System.out.println(item.getItemName() + ", " + item.getItemDescription());
+
             }
         }
     }

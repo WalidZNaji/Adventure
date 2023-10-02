@@ -8,7 +8,7 @@ public class MapBuilder {
 
         Item axe = new Item("Axe", "Heavy wooden axe");
         Item flashlight = new Item("Flashlight", "A weak flashlight");
-        Item waterTank = new Item("Water tank", "(1/2) parts to put out fire ");
+        Item waterTank = new Item("Water", "Water tank is (1/2) parts to put out fire ");
         Item hose = new Item("Hose", "(1/2) parts to put out fire");
 
         ArrayList<Item> itemsInRoom1 = new ArrayList<>();
