@@ -4,19 +4,21 @@ import java.util.Scanner;
 public class Ui {
 
     private static Adventure adventure;
-    private Scanner scan;
 
     public Ui(Adventure adventure) {
-        this.adventure = adventure;
+        Ui.adventure = adventure;
     }
-
     public void startProgram() {
 
-        scan = new Scanner(System.in);
+
+        Scanner scan = new Scanner(System.in);
 
         printStartMessage();
 
         printRoomInfo();
+
+        Player player = adventure.getPlayer();
+        player.setHealth(50);
 
         String input;
 
@@ -41,9 +43,9 @@ public class Ui {
                     adventure.move("west");
                     printRoomInfo();
                 }
-                case "look" -> {
+                case "look" ->
                     printDescription();
-                }
+
                 case "help" -> printHelp();
                 case "take" -> {
                     System.out.println("what would you like to pick up?");
@@ -56,6 +58,13 @@ public class Ui {
                     dropItem(itemName);
                 }
                 case "inventory", "inv" -> showInventory();
+                case "health" -> System.out.println("Current health: " + player.getHealth());
+                case "eat" -> {
+                    System.out.println("what would you like to eat? ");
+                    String whatToEat = scan.next();
+                    eat(whatToEat);
+
+                }
                 case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
                     return;
@@ -68,20 +77,26 @@ public class Ui {
     public static void printStartMessage() {
         System.out.println("\nWelcome to The Adventure!\n");
 
-        System.out.println("The Adventure consists of 9 different rooms.\n" +
-                "All the rooms are different. Have a look around.\n" +
-                "See if you can find room 5.. \n");
+        System.out.println("""
+                The Adventure consists of 9 different rooms.
+                All the rooms are different. Have a look around.
+                See if you can find room 5..
+                """);
 
-        System.out.println("You are able to move around by typing \"go north/south/east/west\" or \"go n/s/e/w\"\n" +
-                "If you need anything type \"help\"\n");
+        System.out.println("""
+                You are able to move around by typing "go north/south/east/west" or "go n/s/e/w"
+                If you need anything type "help"
+                """);
     }
 
     public static void  printRoomInfo() {
 
-        System.out.println("Currently you're in " + adventure.getCurrentRoom() );
-        System.out.println(adventure.getCurrentRoom().getDescription());
+        Room currentRoom = adventure.getCurrentRoom();
 
-        ArrayList<Item> itemsInRoom = adventure.getCurrentRoom().getItemList();
+        System.out.println("Currently you're in " + currentRoom );
+        System.out.println(currentRoom.getDescription());
+
+        ArrayList<Item> itemsInRoom = currentRoom.getItemList();
 
         if (itemsInRoom != null && !itemsInRoom.isEmpty()){
             System.out.println("Items in this room: ");
@@ -104,6 +119,7 @@ public class Ui {
         System.out.println("inventory - Show your inventory.");
         System.out.println("\"take\"  - Pick up item ");
         System.out.println("\"drop\" - drop item ");
+        System.out.println("health - Show current health");
         System.out.println("exit - Quit the game.");
     }
 
@@ -145,21 +161,6 @@ public class Ui {
         }
     }
 
-    /*public void takeItem(String itemName) { Oprindelig takeItem.
-        Player player = adventure.getPlayer();
-        Room currentRoom = adventure.getCurrentRoom();
-        Item item = player.findItem(itemName);
-
-        if (item != null) {
-            currentRoom.removeItem(item);
-            player.takeItem(item);
-
-            System.out.println("You have picked up the " + item.getItemName() + ".");
-        } else {
-            System.out.println("There is nothing like " + itemName + " to pick up around here.");
-        }
-    }
-*/
     public void dropItem(String itemName) {
         Player player = adventure.getPlayer();
         Room currentRoom = adventure.getCurrentRoom();
@@ -182,12 +183,15 @@ public class Ui {
         for (Item item : inventory) {
             System.out.println(item.getItemName() + " " + item.getItemDescription());
         }
-
-
-
     }
 
+    public void eat(String whatToEat) {
+        Player player = adventure.getPlayer();
 
-
-
-}
+        Item wTE = player.findItem(whatToEat);
+            if (wTE instanceof Consumable consumable) {
+                player.setHealth(consumable.getHealth() + player.getHealth());
+                System.out.println("You have eaten " + whatToEat + " health increased to " + player.getHealth());
+            } else System.out.println("there is nothing like " + whatToEat + " to eat in your inventory.");
+        }
+    }

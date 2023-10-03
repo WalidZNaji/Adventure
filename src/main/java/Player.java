@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Player {
 
     private Room currentRoom;
+    private int health;
 
     private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -50,6 +51,14 @@ public class Player {
             }
         }
         return null;
+    }
+    public int getHealth() {
+         return health;
+    }
+    public void setHealth(int newHealth) {
+        health = newHealth;
+    }
+    public void eat(String whatToEat) {
     }
 
 }
