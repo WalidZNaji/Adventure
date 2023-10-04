@@ -189,8 +189,8 @@ public class Ui {
         Player player = adventure.getPlayer();
 
         Item wTE = player.findItem(whatToEat);
-            if (wTE instanceof Consumable consumable) {
-                player.setHealth(consumable.getHealth() + player.getHealth());
+            if (wTE instanceof Food food) {
+                player.setHealth(food.getHealth() + player.getHealth());
                 System.out.println("You have eaten " + whatToEat + " health increased to " + player.getHealth());
             } else System.out.println("there is nothing like " + whatToEat + " to eat in your inventory.");
         }

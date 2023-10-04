@@ -10,7 +10,8 @@ public class MapBuilder {
         Item flashlight = new Item("Flashlight", "A weak flashlight");
         Item waterTank = new Item("Water", "Water tank is (1/2) parts to put out fire ");
         Item hose = new Item("Hose", "(1/2) parts to put out fire");
-        Consumable apple = new Consumable("apple", "big red apple", 25);
+        Food apple = new Food("apple", "big red apple", 25);
+        Food bread = new Food("bread", "a loaf of bread", 50);
 
 
 
@@ -23,6 +24,9 @@ public class MapBuilder {
         ArrayList<Item> itemsInRoom3 = new ArrayList<>();
         itemsInRoom3.add(axe);
 
+        ArrayList<Item> itemsInRoom4 = new ArrayList<>();
+        itemsInRoom4.add(bread);
+
         ArrayList<Item> itemsInRoom7 = new ArrayList<>();
         itemsInRoom7.add(waterTank);
 
@@ -33,7 +37,7 @@ public class MapBuilder {
         Room room1 = new Room("Room 1", "Big empty room with dark lighting", itemsInRoom1);
         Room room2 = new Room("Room 2", "Small room filled with trash", itemsInRoom2);
         Room room3 = new Room("Room 3", "Forrest room filled with green trees", itemsInRoom3);
-        Room room4 = new Room("Room 4", "Big white room with a single chair in the middle");
+        Room room4 = new Room("Room 4", "Big white room with a single chair in the middle", itemsInRoom4);
         Room room5 = new Room("Room 5", "Treassure room! THE ROOM IS ON FIRE\nFind something to put it out with.");
         Room room6 = new Room("Room 6", "Slaughter room with bags hanging from the ceiling ");
         Room room7 = new Room("Room 7", "Playroom filled with colours and childrens toys", itemsInRoom7);
