@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// fixed health dont increase when eating directly from rooms.
+// fixed double text when eating directly from rooms.
+// TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
+// fixed: Food removed from inv when eaten.
+//  fixed commands such as 'take', 'drop' etc. take etc. directly from room.
 public class Ui {
 
     private static Adventure adventure;
@@ -18,7 +23,7 @@ public class Ui {
         printRoomInfo();
 
         Player player = adventure.getPlayer();
-        player.setHealth(50);
+        player.setHealth(50); // Start health.
 
         String input;
 
@@ -62,7 +67,7 @@ public class Ui {
                 case "eat" -> {
                     System.out.println("what would you like to eat? ");
                     String whatToEat = scan.next();
-                    eat(whatToEat);
+                    eat(whatToEat,adventure.getCurrentRoom());
 
                 }
                 case "exit" -> {
@@ -185,13 +190,40 @@ public class Ui {
         }
     }
 
-    public void eat(String whatToEat) {
+    public void eat(String whatToEat, Room currentRoom) {
         Player player = adventure.getPlayer();
 
-        Item wTE = player.findItem(whatToEat);
-            if (wTE instanceof Food food) {
+        // Check if the item is in the player's inventory
+        Item itemInInventory = player.findItem(whatToEat);
+
+        // Check if the item is in the current room
+        Item itemInRoom = null;
+        for (Item item : currentRoom.getItemList()) {
+            if (item.getItemName().equalsIgnoreCase(whatToEat)) {
+                itemInRoom = item;
+                break;
+            }
+        }
+
+        if (itemInInventory != null || itemInRoom != null) {
+            // Determine which item to eat (from inventory or room)
+            Item itemToEat = (itemInInventory != null) ? itemInInventory : itemInRoom;
+
+            if (itemToEat instanceof Food food) {
                 player.setHealth(food.getHealth() + player.getHealth());
                 System.out.println("You have eaten " + whatToEat + " health increased to " + player.getHealth());
-            } else System.out.println("there is nothing like " + whatToEat + " to eat in your inventory.");
+
+                // Remove the eaten item from the inventory or room
+                if (itemInInventory != null) {
+                    player.getInventory().remove(itemToEat);
+                } else {
+                    currentRoom.removeItem(itemToEat);
+                }
+            } else {
+                System.out.println(whatToEat + " is not food. You can't eat it.");
+            }
+        } else {
+            System.out.println("There is nothing like " + whatToEat + " to eat in your inventory or in the room.");
         }
     }
+}

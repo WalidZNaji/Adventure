@@ -8,7 +8,7 @@ public class MapBuilder {
 
         Item axe = new Item("Axe", "Heavy wooden axe");
         Item flashlight = new Item("Flashlight", "A weak flashlight");
-        Item waterTank = new Item("Water", "Water tank is (1/2) parts to put out fire ");
+        Item extinguisher = new Item("Extinguisher", "fire extinguisher is (1/2) parts to put out fire ");
         Item hose = new Item("Hose", "(1/2) parts to put out fire");
         Food apple = new Food("apple", "big red apple", 25);
         Food bread = new Food("bread", "a loaf of bread", 50);
@@ -28,7 +28,7 @@ public class MapBuilder {
         itemsInRoom4.add(bread);
 
         ArrayList<Item> itemsInRoom7 = new ArrayList<>();
-        itemsInRoom7.add(waterTank);
+        itemsInRoom7.add(extinguisher);
 
         ArrayList<Item> itemsInRoom9 = new ArrayList<>();
         itemsInRoom9.add(hose);
