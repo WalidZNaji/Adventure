@@ -12,6 +12,7 @@ public class MapBuilder {
         Item hose = new Item("Hose", "(1/2) parts to put out fire");
         Food apple = new Food("apple", "big red apple", 25);
         Food bread = new Food("bread", "a loaf of bread", 50);
+        Weapon pistol = new RangedWeapon("glock", "saf - small arms fire", "weapon is not equipped");
 
 
 
@@ -30,6 +31,9 @@ public class MapBuilder {
         ArrayList<Item> itemsInRoom7 = new ArrayList<>();
         itemsInRoom7.add(extinguisher);
 
+        ArrayList<Item> itemsInRoom8 = new ArrayList<>();
+        itemsInRoom8.add(pistol);
+
         ArrayList<Item> itemsInRoom9 = new ArrayList<>();
         itemsInRoom9.add(hose);
 
@@ -41,7 +45,7 @@ public class MapBuilder {
         Room room5 = new Room("Room 5", "Treassure room! THE ROOM IS ON FIRE\nFind something to put it out with.");
         Room room6 = new Room("Room 6", "Slaughter room with bags hanging from the ceiling ");
         Room room7 = new Room("Room 7", "Playroom filled with colours and childrens toys", itemsInRoom7);
-        Room room8 = new Room("Room 8", "Disco room with different coloured tiles and a huge discoball");
+        Room room8 = new Room("Room 8", "Disco room with different coloured tiles and a huge discoball", itemsInRoom8);
         Room room9 = new Room("Room 9", "Sleeper room, 9 beds, 9 people sleeping", itemsInRoom9);
 
         room1.setGoEast(room2);

@@ -8,6 +8,10 @@ public class Item {
         this.itemDescription = itemDescription;
     }
 
+    public Item() {
+
+    }
+
     public String getItemName() {
         return itemName;
     }

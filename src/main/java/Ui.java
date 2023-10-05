@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// fixed health dont increase when eating directly from rooms.
-// fixed double text when eating directly from rooms.
+
 // TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
-// fixed: Food removed from inv when eaten.
-//  fixed commands such as 'take', 'drop' etc. take etc. directly from room.
+// TODO fix only being able to drop from inv.
+// TODO Derudover skal inventory kommandoen udvides, så den også angiver hvilket våben man aktuelt har equipped.
+// TODO melee class.
+
 public class Ui {
 
     private static Adventure adventure;
@@ -68,7 +69,11 @@ public class Ui {
                     System.out.println("what would you like to eat? ");
                     String whatToEat = scan.next();
                     eat(whatToEat,adventure.getCurrentRoom());
-
+                }
+                case "equip" -> {
+                    System.out.println("what would you like to equip? ");
+                    String weaponToEquip = scan.next();
+                    equipWeapon(weaponToEquip);
                 }
                 case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
@@ -124,6 +129,7 @@ public class Ui {
         System.out.println("inventory - Show your inventory.");
         System.out.println("\"take\"  - Pick up item ");
         System.out.println("\"drop\" - drop item ");
+        System.out.println("equip - equip weapon");
         System.out.println("health - Show current health");
         System.out.println("exit - Quit the game.");
     }
@@ -226,4 +232,44 @@ public class Ui {
             System.out.println("There is nothing like " + whatToEat + " to eat in your inventory or in the room.");
         }
     }
-}
+
+    public void equipWeapon(String input) {
+        Room currentRoom = adventure.getCurrentRoom();
+        Player player = adventure.getPlayer();
+        Item itemInInventory = player.findItem(input);
+
+        Item itemInRoom = null;
+        for (Item item : currentRoom.getItemList()) {
+            if (item.getItemName().equalsIgnoreCase(input)) {
+                itemInRoom = item;
+                break;
+            }
+        }
+
+        if (itemInInventory != null || itemInRoom != null) {
+            // Determine which item to equip (from inventory or room)
+            Item itemToEquip = (itemInInventory != null) ? itemInInventory : itemInRoom;
+
+            if (itemToEquip instanceof Weapon weapon) {
+                System.out.println("You have equipped " + input);
+
+                // Remove the equipped item from the inventory or room
+                if (itemInInventory != null) {
+                    player.getInventory().remove(itemToEquip);
+                } else {
+                    currentRoom.removeItem(itemToEquip);
+                }
+            } else {
+                System.out.println(input + " is not a weapon. You can't equip it.");
+            }
+        } else {
+            System.out.println("There is nothing like " + input + " to equip in your inventory or in the room.");
+        }
+    }
+
+    public void attack() {
+
+    }
+
+    }
+
