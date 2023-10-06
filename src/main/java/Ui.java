@@ -176,9 +176,16 @@ public class Ui {
         Player player = adventure.getPlayer();
         Room currentRoom = adventure.getCurrentRoom();
         Item item = player.findItem(itemName);
+        ArrayList<Item> inventory = player.getInventory();
 
         if (item != null) {
-            player.dropItem(item);
+            if (item.equals(player.getEquippedWeapon())) {
+                player.setEquippedWeapon(null);// drop 'item' into inv.
+                inventory.add(item);
+            }
+
+
+            player.dropItem(item); // drop if in inv
             currentRoom.addItem(item);
             System.out.println("You have dropped " + item.getItemName());
         } else System.out.println("There is nothing like " + itemName + " in your inventory");
@@ -186,6 +193,7 @@ public class Ui {
     public void showInventory() {
         Player player = adventure.getPlayer();
         ArrayList<Item> inventory = player.getInventory();
+        Weapon equippedWeapon = player.getEquippedWeapon();
 
         if (inventory.isEmpty()) {
             System.out.println("Your inventory is empty.");
@@ -194,6 +202,11 @@ public class Ui {
         for (Item item : inventory) {
             System.out.println(item.getItemName() + " " + item.getItemDescription());
         }
+
+        if (equippedWeapon != null) {
+            System.out.println("Equipped weapon: " + equippedWeapon);
+        } else
+            System.out.println("No equipped weapon.");
     }
 
     public void eat(String whatToEat, Room currentRoom) {
@@ -251,6 +264,7 @@ public class Ui {
             Item itemToEquip = (itemInInventory != null) ? itemInInventory : itemInRoom;
 
             if (itemToEquip instanceof Weapon weapon) {
+                player.setEquippedWeapon(weapon);
                 System.out.println("You have equipped " + input);
 
                 // Remove the equipped item from the inventory or room

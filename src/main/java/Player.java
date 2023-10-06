@@ -4,6 +4,7 @@ public class Player {
 
     private Room currentRoom;
     private int health;
+    private Weapon equippedWeapon;
 
     private ArrayList<Item> inventory = new ArrayList<>();
 
@@ -60,5 +61,14 @@ public class Player {
     }
     public void eat(String whatToEat) {
     }
+
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
+    }
+
+    public void setEquippedWeapon(Weapon weaponToEquip) {
+        this.equippedWeapon = weaponToEquip;
+    }
+
 
 }

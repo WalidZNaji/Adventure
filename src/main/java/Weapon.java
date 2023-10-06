@@ -15,6 +15,10 @@ public abstract class Weapon extends Item {
         this.isWeaponEquipped = isWeaponEquipped;
     }
 
+    public String toString() {
+        return getItemName();
+    }
+
     public abstract String attack();
 
     public abstract String equipWeapon(String weaponToEquip);

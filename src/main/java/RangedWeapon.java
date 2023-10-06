@@ -14,5 +14,6 @@ public class RangedWeapon extends Weapon {
         return weaponToEquip + " is equipped";
 }
 
+
 }
 
