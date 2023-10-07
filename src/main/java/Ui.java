@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 // TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
 // TODO fix only being able to drop from inv.
-// TODO Derudover skal inventory kommandoen udvides, så den også angiver hvilket våben man aktuelt har equipped.
 // TODO melee class.
+// TODO Ammunition for ranged weapons.
+// Fixed inventory kommandoen udvides, så den også angiver hvilket våben man aktuelt har equipped.
+// Added attack()
+
 
 public class Ui {
 
@@ -75,6 +78,7 @@ public class Ui {
                     String weaponToEquip = scan.next();
                     equipWeapon(weaponToEquip);
                 }
+                case "attack" -> attack();
                 case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
                     return;
@@ -130,6 +134,7 @@ public class Ui {
         System.out.println("\"take\"  - Pick up item ");
         System.out.println("\"drop\" - drop item ");
         System.out.println("equip - equip weapon");
+        System.out.println("attack - attacks using currently equipped weapon");
         System.out.println("health - Show current health");
         System.out.println("exit - Quit the game.");
     }
@@ -260,7 +265,7 @@ public class Ui {
         }
 
         if (itemInInventory != null || itemInRoom != null) {
-            // Determine which item to equip (from inventory or room)
+            // Determine which item to equip (from inventory or room) - Udvidet fra original opgave.
             Item itemToEquip = (itemInInventory != null) ? itemInInventory : itemInRoom;
 
             if (itemToEquip instanceof Weapon weapon) {
@@ -282,6 +287,16 @@ public class Ui {
     }
 
     public void attack() {
+        Player player = adventure.getPlayer();
+
+        if (player.getEquippedWeapon() instanceof RangedWeapon rangedWeapon) {
+            System.out.println("You shot " + "x" + " using your " + rangedWeapon.getItemName());
+        }
+        if (player.getEquippedWeapon() instanceof MeleeWeapon meleeWeapon) {
+            System.out.println("You attacked " + "x " + "using you " + meleeWeapon.getItemName());
+        } else System.out.println("You can only use weapons to attack");
+
+
 
     }
 
