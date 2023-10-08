@@ -292,7 +292,7 @@ public class Ui {
         if (player.getEquippedWeapon() instanceof RangedWeapon rangedWeapon) {
             System.out.println("You shot " + "x" + " using your " + rangedWeapon.getItemName());
         }
-        if (player.getEquippedWeapon() instanceof MeleeWeapon meleeWeapon) {
+        else if (player.getEquippedWeapon() instanceof MeleeWeapon meleeWeapon) {
             System.out.println("You attacked " + "x " + "using you " + meleeWeapon.getItemName());
         } else System.out.println("You can only use weapons to attack");
 
