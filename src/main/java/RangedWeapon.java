@@ -1,7 +1,10 @@
 public class RangedWeapon extends Weapon {
 
-    public RangedWeapon(String name, String description, String isWeaponEquipped) {
+    private int ammunition = 10;
+
+    public RangedWeapon(String name, String description, String isWeaponEquipped, int rangedAmm) {
         super(name, description, isWeaponEquipped);
+        this.ammunition = rangedAmm;
     }
 
 @Override
@@ -14,6 +17,21 @@ public class RangedWeapon extends Weapon {
         return weaponToEquip + " is equipped";
 }
 
+    public int getAmmunition() {
+        return ammunition;
+}
+
+    public void setAmmunition(int newAmm) {
+        ammunition = newAmm;
+    }
+
+    public String decrementAmmunition() {
+        if (ammunition > 0) {
+            ammunition--;
+            return "Ammo: " + getAmmunition();
+        }
+        else return "Out of ammo.";
+    }
 
 }
 

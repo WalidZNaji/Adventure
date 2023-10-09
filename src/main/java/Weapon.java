@@ -2,6 +2,7 @@ public abstract class Weapon extends Item {
 
     private String isWeaponEquipped;
 
+
     public Weapon(String itemName, String itemDescription, String isWeaponEquipped) {
         super(itemName, itemDescription);
         this.isWeaponEquipped = isWeaponEquipped;

@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 // TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
 // TODO fix only being able to drop from inv.
-// TODO melee class.
-// TODO Ammunition for ranged weapons.
-// Fixed inventory kommandoen udvides, så den også angiver hvilket våben man aktuelt har equipped.
-// Added attack()
+// TODO Fix ranged weapon still shooting after exceeding mag capacity.
+// TODO Fix scanner bug when using 'inv, take, etc'
 
 
 public class Ui {
@@ -57,8 +55,8 @@ public class Ui {
 
                 case "help" -> printHelp();
                 case "take" -> {
-                    System.out.println("what would you like to pick up?");
-                    String itemName = scan.nextLine();
+                    System.out.println("What would you like to pick up?");
+                    String itemName = scan.next();
                     takeItem(itemName);
                 }
                 case "drop" -> {
@@ -67,6 +65,7 @@ public class Ui {
                     dropItem(itemName);
                 }
                 case "inventory", "inv" -> showInventory();
+
                 case "health" -> System.out.println("Current health: " + player.getHealth());
                 case "eat" -> {
                     System.out.println("what would you like to eat? ");
@@ -78,10 +77,16 @@ public class Ui {
                     String weaponToEquip = scan.next();
                     equipWeapon(weaponToEquip);
                 }
-                case "attack" -> attack();
+                case "attack" -> {
+                    attack();
+                }
                 case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
                     return;
+
+                } default -> {
+                    scan.nextLine(); // Fixes scanner bug when using takeItem();
+                    System.out.println("Not valid input. Try again.");
                 }
             }
         }
@@ -291,6 +296,9 @@ public class Ui {
 
         if (player.getEquippedWeapon() instanceof RangedWeapon rangedWeapon) {
             System.out.println("You shot " + "x" + " using your " + rangedWeapon.getItemName());
+            if (rangedWeapon.getAmmunition() > 0 ) {
+                System.out.println(rangedWeapon.decrementAmmunition());
+            }
         }
         else if (player.getEquippedWeapon() instanceof MeleeWeapon meleeWeapon) {
             System.out.println("You attacked " + "x " + "using you " + meleeWeapon.getItemName());
