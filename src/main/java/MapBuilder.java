@@ -12,9 +12,9 @@ public class MapBuilder {
         Item hose = new Item("Hose", "(1/2) parts to put out fire");
         Food apple = new Food("apple", "big red apple", 25);
         Food bread = new Food("bread", "a loaf of bread", 50);
-        Weapon pistol = new RangedWeapon("glock", "saf - small arms fire", "weapon is not equipped", 10);
-        Weapon sword = new MeleeWeapon("sword", "long shiny sword", "weapon is not equipped");
-        Enemy babyDragon = new Enemy("dragon", "baby dragon", 25);
+        Weapon pistol = new RangedWeapon("glock", "saf - small arms fire", "weapon is not equipped", 25, 10);
+        Weapon sword = new MeleeWeapon("sword", "long shiny sword", "weapon is not equipped", 25);
+        Enemy babyDragon = new Enemy("dragon", "baby dragon", 50, 25);
 
         ArrayList<Enemy> enemiesInRoom1 = new ArrayList<>();
         enemiesInRoom1.add(babyDragon);

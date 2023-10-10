@@ -70,5 +70,16 @@ public class Player {
         this.equippedWeapon = weaponToEquip;
     }
 
+    public String attack(Enemy enemy) {
+        if (equippedWeapon != null) {
+            return equippedWeapon.attack() + " at " + enemy.getName();
+        } else {
+            return "You have no weapon equipped.";
+        }
+    }
+    public void takeDamage(int damage) {
+        // Reduce player's health by the specified damage amount
+        health -= damage;
 
+        }
 }

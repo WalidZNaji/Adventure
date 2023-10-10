@@ -6,7 +6,6 @@ import java.util.Scanner;
 // TODO fix only being able to drop from inv.
 // TODO Fix ranged weapon still shooting after exceeding mag capacity.
 // TODO Fix scanner bug when using 'inv, take, etc'
-// TODO fix Ensure enemy is implemented correctly and fix enemy wont show in room.
 
 
 public class Ui {
@@ -16,6 +15,7 @@ public class Ui {
     public Ui(Adventure adventure) {
         Ui.adventure = adventure;
     }
+
     public void startProgram() {
 
 
@@ -51,8 +51,7 @@ public class Ui {
                     adventure.move("west");
                     printRoomInfo();
                 }
-                case "look" ->
-                    printDescription();
+                case "look" -> printDescription();
 
                 case "help" -> printHelp();
                 case "take" -> {
@@ -71,7 +70,7 @@ public class Ui {
                 case "eat" -> {
                     System.out.println("what would you like to eat? ");
                     String whatToEat = scan.next();
-                    eat(whatToEat,adventure.getCurrentRoom());
+                    eat(whatToEat, adventure.getCurrentRoom());
                 }
                 case "equip" -> {
                     System.out.println("what would you like to equip? ");
@@ -79,16 +78,18 @@ public class Ui {
                     equipWeapon(weaponToEquip);
                 }
                 case "attack" -> {
-                    attack();
+                    System.out.println("Who would you like to attack?");
+                    String target = scan.next();
+                    attack(target);
                 }
                 case "exit" -> {
                     System.out.println("Game has been quit. Thank you for playing");
                     return;
 
                 }
-                }
             }
         }
+    }
 
     public static void printStartMessage() {
         System.out.println("\nWelcome to The Adventure!\n");
@@ -105,21 +106,29 @@ public class Ui {
                 """);
     }
 
-    public static void  printRoomInfo() {
+    public static void printRoomInfo() {
 
         Room currentRoom = adventure.getCurrentRoom();
+        ArrayList<Enemy> enemiesInRoom = currentRoom.getEnemyList();
 
-        System.out.println("Currently you're in " + currentRoom );
+        System.out.println("Currently you're in " + currentRoom);
         System.out.println(currentRoom.getDescription());
 
         ArrayList<Item> itemsInRoom = currentRoom.getItemList();
 
-        if (itemsInRoom != null && !itemsInRoom.isEmpty()){
+        if (itemsInRoom != null && !itemsInRoom.isEmpty()) {
             System.out.println("Items in this room: ");
             for (Item item : itemsInRoom) {
                 System.out.println(item.getItemName() + ", " + item.getItemDescription());
             }
         }
+        if (enemiesInRoom != null && !enemiesInRoom.isEmpty()) {
+            System.out.println("Enemies: ");
+            for (Enemy enemy : enemiesInRoom) {
+                System.out.println(enemy.getName() + ", " + enemy.getDescription() + ", health: " + enemy.getHealth());
+            }
+        }
+
 
         System.out.print("\nWhat would you like to do: ");
     }
@@ -205,6 +214,7 @@ public class Ui {
             System.out.println("You have dropped " + item.getItemName());
         } else System.out.println("There is nothing like " + itemName + " in your inventory");
     }
+
     public void showInventory() {
         Player player = adventure.getPlayer();
         ArrayList<Item> inventory = player.getInventory();
@@ -295,23 +305,70 @@ public class Ui {
             System.out.println("There is nothing like " + input + " to equip in your inventory or in the room.");
         }
     }
+        public void attack(String target) {
+            Player player = adventure.getPlayer();
+            Room currentRoom = adventure.getCurrentRoom();
+            Enemy enemyToAttack = null;
 
-    public void attack() {
-        Player player = adventure.getPlayer();
-
-        if (player.getEquippedWeapon() instanceof RangedWeapon rangedWeapon) {
-            System.out.println("You shot " + "x" + " using your " + rangedWeapon.getItemName());
-            if (rangedWeapon.getAmmunition() > 0 ) {
-                System.out.println(rangedWeapon.decrementAmmunition());
+            // Find the enemy to attack in the current room
+            for (Enemy enemy : currentRoom.getEnemyList()) {
+                if (enemy.getName().equalsIgnoreCase(target)) {
+                    enemyToAttack = enemy;
+                    break;
+                }
             }
+
+            if (enemyToAttack != null) {
+                if (player.getEquippedWeapon() instanceof RangedWeapon rangedWeapon) {
+                    if (rangedWeapon.getAmmunition() > 0) {
+                        // Perform ranged attack
+                        int playerDamage = rangedWeapon.getDamage();
+                        int enemyDamage = enemyToAttack.attack();  // Get enemy's damage directly
+                        enemyToAttack.takeDamage(playerDamage);
+                        System.out.println("You shot " + target + " using your " + rangedWeapon.getItemName() + ". " +
+                                target + " took " + playerDamage + " damage.");
+
+                        // Check if the enemy is defeated after player's attack
+                        if (enemyToAttack.getHealth() <= 0) {
+                            // Drop the enemy's weapon in the room (optional)
+                            currentRoom.addItem(enemyToAttack.getEquippedWeapon());
+
+                            // Remove the defeated enemy from the room
+                            currentRoom.removeEnemy(enemyToAttack);
+                            System.out.println("You defeated " + target + "!");
+                        } else {
+                            // Enemy retaliates if not defeated
+                            player.takeDamage(enemyDamage);
+                            System.out.println(target + " retaliated and dealt " + enemyDamage + " damage to you.");
+                        }
+                        rangedWeapon.decrementAmmunition();
+                    } else {
+                        System.out.println("You are out of ammunition for your " + rangedWeapon.getItemName() + ".");
+                    }
+                } else if (player.getEquippedWeapon() instanceof MeleeWeapon meleeWeapon) {
+                    int playerDamage = meleeWeapon.getDamage();
+                    int enemyDamage = enemyToAttack.attack();  // Get enemy's damage directly
+                    enemyToAttack.takeDamage(playerDamage);
+                    System.out.println("You attacked " + target + " using your " + meleeWeapon.getItemName() + ". " +
+                            target + " took " + playerDamage + " damage.");
+
+                    if (enemyToAttack.getHealth() <= 0) {
+                        currentRoom.addItem(enemyToAttack.getEquippedWeapon());
+                        currentRoom.removeEnemy(enemyToAttack);
+                        System.out.println("You defeated " + target + "!");
+                    } else {
+                        player.takeDamage(enemyDamage);
+                        System.out.println(target + " retaliated and dealt " + enemyDamage + " damage to you.");
+                    }
+                } else {
+                    System.out.println("You can only use weapons to attack.");
+                }
+            } else {
+                System.out.println("No enemy with that name found in the room.");
+            }
+
         }
-        else if (player.getEquippedWeapon() instanceof MeleeWeapon meleeWeapon) {
-            System.out.println("You attacked " + "x " + "using you " + meleeWeapon.getItemName());
-        } else System.out.println("You can only use weapons to attack");
+}
 
 
-
-    }
-
-    }
 
