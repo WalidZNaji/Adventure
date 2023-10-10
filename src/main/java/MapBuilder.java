@@ -14,8 +14,10 @@ public class MapBuilder {
         Food bread = new Food("bread", "a loaf of bread", 50);
         Weapon pistol = new RangedWeapon("glock", "saf - small arms fire", "weapon is not equipped", 10);
         Weapon sword = new MeleeWeapon("sword", "long shiny sword", "weapon is not equipped");
+        Enemy babyDragon = new Enemy("dragon", "baby dragon", 25);
 
-
+        ArrayList<Enemy> enemiesInRoom1 = new ArrayList<>();
+        enemiesInRoom1.add(babyDragon);
 
         ArrayList<Item> itemsInRoom1 = new ArrayList<>();
         itemsInRoom1.add(flashlight);
@@ -42,7 +44,7 @@ public class MapBuilder {
         itemsInRoom9.add(hose);
 
 
-        Room room1 = new Room("Room 1", "Big empty room with dark lighting", itemsInRoom1);
+        Room room1 = new Room("Room 1", "Big empty room with dark lighting", itemsInRoom1, enemiesInRoom1);
         Room room2 = new Room("Room 2", "Small room filled with trash", itemsInRoom2);
         Room room3 = new Room("Room 3", "Forrest room filled with green trees", itemsInRoom3);
         Room room4 = new Room("Room 4", "Big white room with a single chair in the middle", itemsInRoom4);

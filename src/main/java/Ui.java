@@ -6,6 +6,7 @@ import java.util.Scanner;
 // TODO fix only being able to drop from inv.
 // TODO Fix ranged weapon still shooting after exceeding mag capacity.
 // TODO Fix scanner bug when using 'inv, take, etc'
+// TODO fix Ensure enemy is implemented correctly and fix enemy wont show in room.
 
 
 public class Ui {
@@ -84,14 +85,10 @@ public class Ui {
                     System.out.println("Game has been quit. Thank you for playing");
                     return;
 
-                } default -> {
-                    scan.nextLine(); // Fixes scanner bug when using takeItem();
-                    System.out.println("Not valid input. Try again.");
+                }
                 }
             }
         }
-
-    }
 
     public static void printStartMessage() {
         System.out.println("\nWelcome to The Adventure!\n");
@@ -136,6 +133,7 @@ public class Ui {
         System.out.println("look - Show description of current room.");
         System.out.println("help - Show this help message.");
         System.out.println("inventory - Show your inventory.");
+        System.out.println("eat - eat food from inventory");
         System.out.println("\"take\"  - Pick up item ");
         System.out.println("\"drop\" - drop item ");
         System.out.println("equip - equip weapon");
@@ -148,6 +146,8 @@ public class Ui {
 
         Room currentRoom = adventure.getCurrentRoom();
         ArrayList<Item> itemsInRoom = currentRoom.getItemList();
+        ArrayList<Enemy> enemiesInRoom = currentRoom.getEnemyList();
+
 
         System.out.println(currentRoom.getDescription());
 
@@ -155,7 +155,12 @@ public class Ui {
             System.out.println("Items in this room: ");
             for (Item item : itemsInRoom) {
                 System.out.println(item.getItemName() + ", " + item.getItemDescription());
-
+            }
+        }
+        if (enemiesInRoom != null && !enemiesInRoom.isEmpty()) {
+            System.out.println("Enemies: ");
+            for (Enemy enemy : enemiesInRoom) {
+                System.out.println(enemy.getName() + ", " + enemy.getDescription() + ", health: " + enemy.getHealth());
             }
         }
     }

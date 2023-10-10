@@ -9,17 +9,26 @@ public class Room {
     private Room goEast;
     private Room goWest;
     private ArrayList<Item> itemList;
+    private ArrayList<Enemy> enemyList;
 
+    public Room(String name, String description, ArrayList<Item> itemList, ArrayList<Enemy> enemyList) {
+        this.name = name;
+        this.description = description;
+        this.itemList = itemList != null ? itemList : new ArrayList<>();
+        this.enemyList = enemyList != null ? enemyList : new ArrayList<>();
+    }
     public Room(String name, String description, ArrayList<Item> itemList) {
         this.name = name;
         this.description = description;
         this.itemList = itemList != null ? itemList : new ArrayList<>();
+        this.enemyList = new ArrayList<>();
     }
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
         this.itemList = new ArrayList<>();
+        this.enemyList = new ArrayList<>();
     }
 
     public String getName() {
@@ -87,6 +96,20 @@ public class Room {
     public void removeItem(Item item) {
         itemList.remove(item);
     }
+
+    public ArrayList<Enemy> getEnemyList() {
+        return enemyList;
+    }
+
+    public void addEnemy(Enemy enemy) {
+        enemyList.add(enemy);
+    }
+
+    public void removeEnemy(Enemy enemy) {
+        enemyList.remove(enemy);
+    }
+
+
 
 
 }
