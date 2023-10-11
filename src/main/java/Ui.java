@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 // TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
 // TODO fix only being able to drop from inv.
-// TODO Fix ranged weapon still shooting after exceeding mag capacity.
 // TODO make enemy drop weapon when killed.
+// Fixed ranged weapon still shooting after exceeding mag capacity.
 
 
 public class Ui {
@@ -20,7 +20,6 @@ public class Ui {
 
         Scanner scan = new Scanner(System.in);
         Player player = adventure.getPlayer();
-        Enemy enemy = adventure.getEnemy();
 
         printStartMessage();
 
@@ -321,8 +320,10 @@ public class Ui {
                         enemyToAttack.takeDamage(playerDamage);
                         System.out.println("You shot " + target + " using your " + rangedWeapon.getItemName() + ". " +
                                 target + " took " + playerDamage + " damage.");
+                        System.out.print("Ammunition: ");
+                        System.out.println(rangedWeapon.getAmmunition() -1);
 
-                        // Check if the enemy is defeated after player's attack
+                        // Check if the enemy is defeated after player attack
                         if (enemyToAttack.getHealth() <= 0) {
                             // Drop the enemy's weapon in the room (optional)
                             currentRoom.addItem(enemyToAttack.getEquippedWeapon());
