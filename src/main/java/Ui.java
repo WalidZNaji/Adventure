@@ -5,7 +5,7 @@ import java.util.Scanner;
 // TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
 // TODO fix only being able to drop from inv.
 // TODO Fix ranged weapon still shooting after exceeding mag capacity.
-// TODO Fix scanner bug when using 'inv, take, etc'
+// TODO make enemy drop weapon when killed.
 
 
 public class Ui {
@@ -18,14 +18,14 @@ public class Ui {
 
     public void startProgram() {
 
-
         Scanner scan = new Scanner(System.in);
+        Player player = adventure.getPlayer();
+        Enemy enemy = adventure.getEnemy();
 
         printStartMessage();
 
         printRoomInfo();
 
-        Player player = adventure.getPlayer();
         player.setHealth(50); // Start health.
 
         String input;
@@ -308,15 +308,9 @@ public class Ui {
         public void attack(String target) {
             Player player = adventure.getPlayer();
             Room currentRoom = adventure.getCurrentRoom();
-            Enemy enemyToAttack = null;
 
             // Find the enemy to attack in the current room
-            for (Enemy enemy : currentRoom.getEnemyList()) {
-                if (enemy.getName().equalsIgnoreCase(target)) {
-                    enemyToAttack = enemy;
-                    break;
-                }
-            }
+            Enemy enemyToAttack = findEnemyInCurrentRoom(target);
 
             if (enemyToAttack != null) {
                 if (player.getEquippedWeapon() instanceof RangedWeapon rangedWeapon) {
@@ -368,6 +362,15 @@ public class Ui {
             }
 
         }
+    private Enemy findEnemyInCurrentRoom(String target) {
+        Room currentRoom = adventure.getCurrentRoom();
+        for (Enemy enemy : currentRoom.getEnemyList()) {
+            if (enemy.getName().equalsIgnoreCase(target)) {
+                return enemy;
+            }
+        }
+        return null;
+    }
 }
 
 
