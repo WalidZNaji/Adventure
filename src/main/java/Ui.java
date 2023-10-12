@@ -5,7 +5,6 @@ import java.util.Scanner;
 // TODO Fix commands. Take etc. followed by name instead of take 'enter' then name.
 // TODO fix only being able to drop from inv.
 // TODO make enemy drop weapon when killed.
-// Fixed ranged weapon still shooting after exceeding mag capacity.
 
 
 public class Ui {
