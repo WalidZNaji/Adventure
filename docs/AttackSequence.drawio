@@ -1,0 +1,125 @@
+<mxfile host="app.diagrams.net" modified="2023-10-12T16:31:53.458Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="-KwLv3XhyoXOjjhB3QTk" version="22.0.4" type="device">
+  <diagram name="Side-1" id="QL_d5qYNOKxclUyTelQ3">
+    <mxGraphModel dx="1590" dy="2239" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="D__oA6mbRpfpS_36usZ_-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-7" target="D__oA6mbRpfpS_36usZ_-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-7" value="" style="ellipse;html=1;shape=startState;" vertex="1" parent="1">
+          <mxGeometry x="399" y="-150" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-11" target="D__oA6mbRpfpS_36usZ_-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-11" value="Attack" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="-20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-14" target="D__oA6mbRpfpS_36usZ_-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-14" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="374" y="240" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-15" target="D__oA6mbRpfpS_36usZ_-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-15" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="374" y="400" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-17" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="360" as="sourcePoint" />
+            <mxPoint x="680" y="721.7391304347826" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="680" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-18" value="[No enemy found]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="470" y="248" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-19" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="480" as="sourcePoint" />
+            <mxPoint x="680" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-20" value="[No weapon equipped]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="461" y="408" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-21" value="" style="ellipse;html=1;shape=endState;strokeColor=default;fillColor=default;gradientColor=none;opacity=80;" vertex="1" parent="1">
+          <mxGeometry x="670" y="720" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-22" value="[Enemy found]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="314" y="340" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-25" value="&lt;font color=&quot;#ffffff&quot;&gt;IIIIIII&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="424" y="130" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-26" target="D__oA6mbRpfpS_36usZ_-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-26" value="" style="shape=dataStorage;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="361" y="90" width="106" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-31" value="Player enters name of enemy" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="385" y="110" width="59" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-32" target="D__oA6mbRpfpS_36usZ_-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-32" value="Player deals dmg to enemy" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="555" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.086;entryY=0.268;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-34" target="D__oA6mbRpfpS_36usZ_-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="534" y="724.9999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-34" target="D__oA6mbRpfpS_36usZ_-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-34" value="" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="374" y="685" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-38" value="[Enemy is killed]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="461" y="690" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-41" value="[Enemy survives attack]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="264" y="780" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-42" target="D__oA6mbRpfpS_36usZ_-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-42" value="Enemy retaliates" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354.5" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-44" target="D__oA6mbRpfpS_36usZ_-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="D__oA6mbRpfpS_36usZ_-44" target="D__oA6mbRpfpS_36usZ_-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="-130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="200" y="1020" />
+              <mxPoint x="200" y="-135" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-44" value="" style="rhombus;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="374.5" y="980" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-48" value="[Player is killed]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="461" y="980" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="D__oA6mbRpfpS_36usZ_-51" value="[Player survives retaliation]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="216" y="980" width="170" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
